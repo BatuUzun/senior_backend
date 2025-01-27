@@ -3,13 +3,13 @@
 User database
 
 CREATE TABLE user_profiles (
-    id SERIAL PRIMARY KEY,           -- Primary key, auto-incremented
+    id SERIAL PRIMARY KEY,           
     username VARCHAR(255) UNIQUE NOT NULL,  -- Unique username column
-    description TEXT,                -- Description column
-    bio TEXT,                        -- Bio column
-    link VARCHAR(2083),              -- Link column (max length for URLs)
-    location VARCHAR(255),           -- Location column, max length of 255 characters
-    profile_image VARCHAR(2083)      -- Profile image column to store S3 link
+    description TEXT,                
+    bio TEXT,                        
+    link VARCHAR(2083),              
+    location VARCHAR(255),           
+    profile_image VARCHAR(2083)      
 );
 
 CREATE TABLE user_follows (
@@ -20,7 +20,6 @@ CREATE TABLE user_follows (
 
 
 
--- Insert sample data into user_profiles
 INSERT INTO user_profiles (username, description, bio, link, location, profile_image) VALUES
 ('john_doe', 'Software Engineer', 'Loves coding and problem-solving.', 'https://johndoe.com', 'New York', 'default.png'),
 ('jane_smith', 'Graphic Designer', 'Passionate about creativity.', 'https://janesmith.com', 'San Francisco', 'default.png'),
@@ -39,10 +38,10 @@ INSERT INTO user_profiles (username, description, bio, link, location, profile_i
 Interaction database
 
 CREATE TABLE review (
-    id BIGSERIAL PRIMARY KEY, -- Auto-incrementing unique identifier for each review
-    user_id BIGINT NOT NULL,  -- User ID associated with the review
-    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5), -- Rating, constrained to values 1 to 5
-    comment TEXT,            -- Optional comment provided by the user
-    spotify_id VARCHAR(64) NOT NULL, -- Spotify ID (allowing for potential future changes in length)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp of when the review was created
+    id BIGSERIAL PRIMARY KEY, 
+    user_id BIGINT NOT NULL,  
+    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5), 
+    comment TEXT,            
+    spotify_id VARCHAR(64) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
