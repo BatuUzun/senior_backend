@@ -1,6 +1,6 @@
 # senior_backend database
 
-User database
+# User database
 
 CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY,           
@@ -35,7 +35,7 @@ INSERT INTO user_profiles (username, description, bio, link, location, profile_i
 
 
 
-Interaction database
+# Interaction database
 
 CREATE TABLE review (
     id BIGSERIAL PRIMARY KEY, 
