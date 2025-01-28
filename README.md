@@ -52,3 +52,10 @@ CREATE TABLE likes (
     spotify_id VARCHAR(64) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE favorite (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    spotify_id VARCHAR(64) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
