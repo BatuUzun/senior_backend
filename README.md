@@ -59,3 +59,12 @@ CREATE TABLE favorite (
     spotify_id VARCHAR(64) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE review_comments (
+    id BIGSERIAL PRIMARY KEY,
+    review_id BIGINT NOT NULL REFERENCES review (id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL,
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
