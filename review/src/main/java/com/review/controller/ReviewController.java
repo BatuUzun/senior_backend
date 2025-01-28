@@ -65,4 +65,14 @@ public class ReviewController {
 	public ResponseEntity<Double> calculateAverageRating(@PathVariable String spotifyId) {
 		return ResponseEntity.ok(reviewService.calculateAverageRating(spotifyId));
 	}
+	
+	@GetMapping("/get-review/{id}")
+    public ResponseEntity<?> getReviewById(@PathVariable Long id) {
+        try {
+            Review review = reviewService.getReviewById(id);
+            return ResponseEntity.ok(review);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
 }

@@ -31,6 +31,12 @@ public class ApiGatewayConfiguration {
                         .uri("lb://user-follow"))
                 .route("review", r -> r.path("/review/**")
                         .uri("lb://review"))
+                .route("like", r -> r.path("/like/**")
+                        .uri("lb://like"))
+                .route("favorite", r -> r.path("/favorite/**")
+                        .uri("lb://favorite"))
+                .route("comment", r -> r.path("/comment/**")
+                        .uri("lb://comment"))
                 .build();
     }
 
@@ -91,6 +97,27 @@ public class ApiGatewayConfiguration {
         review.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         review.setAllowCredentials(true);
         source.registerCorsConfiguration("/review/**", review);
+        
+        CorsConfiguration like = new CorsConfiguration();
+        like.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://your-frontend-url.com"));
+        like.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        like.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        like.setAllowCredentials(true);
+        source.registerCorsConfiguration("/like/**", like);
+        
+        CorsConfiguration favorite = new CorsConfiguration();
+        favorite.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://your-frontend-url.com"));
+        favorite.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        favorite.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        favorite.setAllowCredentials(true);
+        source.registerCorsConfiguration("/favorite/**", favorite);
+        
+        CorsConfiguration comment = new CorsConfiguration();
+        comment.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://your-frontend-url.com"));
+        comment.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        comment.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        comment.setAllowCredentials(true);
+        source.registerCorsConfiguration("/comment/**", comment);
 
         return new CorsWebFilter(source);
     }

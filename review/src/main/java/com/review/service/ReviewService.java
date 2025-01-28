@@ -73,4 +73,9 @@ public class ReviewService {
         
         return roundedRating.doubleValue();
     }
+    
+    public Review getReviewById(Long reviewId) {
+        Optional<Review> review = reviewRepository.findById(reviewId);
+        return review.orElseThrow(() -> new IllegalArgumentException("Review with ID " + reviewId + " not found."));
+    }
 }
